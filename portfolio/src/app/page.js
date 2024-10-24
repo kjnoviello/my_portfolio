@@ -1,101 +1,229 @@
+"use client"
 import Image from "next/image";
+import { RainbowButton } from "@/components/ui/rainbow-button";
+import WordFadeIn from "@/components/ui/word-fade-in";
+import { GridPattern } from "@/components/ui/animated-grid-pattern";
+import { motion } from "framer-motion"
+import { useState } from "react";
+// import { motion } from "framer-motion-3d"
+
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+  const [isHoveredExp, setIsHoveredExp] = useState(false);
+  const [isHoveredEdu, setIsHoveredEdu] = useState(false);
+  const [isHoveredPro, setIsHoveredPro] = useState(false);
+  const [isHoveredAbo, setIsHoveredAbo] = useState(false);
+
+
+
+  return (
+    <>
+      {/* Animated background */}
+      <GridPattern duration="1" />
+
+      {/* Main body */}
+      <main className="flex flex-col mx-auto items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+
+        <section className="flex flex-col sm:flex-row gap-8 row-start-2 items-center z-10 ">
+
+          {/* TODO cambiar la clase de la foto */}
+          <div className="bg-[#828282c9] rounded-[18px]">
+            <Image
+              className="dark:invert foto"
+              src="/profile.svg"
+              alt="my photo"
+              width={150}
+              height={150}
+              priority
+            />
+          </div>
+
+          <div className="flex flex-col gap-8 row-start-2 items-center sm:items-start z-10">
+            <div className="md:w-[500px] w-full list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
+              <WordFadeIn 
+                className="mb-2 text-sm text-white"
+                words="Hola, mi nombre es Kevin Joel Noviello y soy DESARROLLADOR FRONTEND"                
+              />
+            </div>
+            {/* <RainbowButton>Más sobre mí</RainbowButton> */}
+          </div>
+
+        </section>
+
+        {/* Section cards */}
+        <section className="flex flex-wrap justify-center gap-5">
+
+          <div className="flex flex-col sm:flex-row gap-1" style={{ perspective: '1000px' }}>
+            <motion.article
+              className="flex border border-white border-solid rounded-xl w-full p-2 z-10 hover:shadow-[20px_18px_110px_rgba(255,255,255,0.9)] bg-black transition-all duration-100 transform cursor-pointer"
+              onHoverStart={() => setIsHoveredExp(true)}
+              onHoverEnd={() => setIsHoveredExp(false)}
+              animate={{
+                rotateZ: isHoveredExp ? 0 : 12,
+                rotateY: isHoveredExp ? 0 : 20,
+                rotateX: isHoveredExp ? 0 : -30,
+                scale: isHoveredExp ? 1 : 0.75, // Ajustar escala en función del hover
+                boxShadow: isHoveredExp ? '20px 18px 110px rgba(255, 255, 255, 0.9)' : 'none', // Cambiar sombra
+              }}
+
+            >
+              <div className="bg-black rounded-xl z-10">
+                <Image
+                  className="dark:invert foto"
+                  src="/home/experience.svg"
+                  alt="my photo"
+                  width={120}
+                  height={120}
+                  priority
+                />
+              </div>
+              <div className="flex flex-col gap-2 px-2">
+                <p className="text-md text-[#58e6d9]"><strong>Experiencia</strong></p>
+                <p className="text-lg">Conoce más sobre mi carrera.</p>
+              </div>
+            </motion.article>
+
+
+            <motion.article
+              className="flex border border-white border-solid rounded-xl w-full p-2 z-10 hover:shadow-[5px_3px_5px_rgba(255,255,255,0.9)] bg-black transition-all duration-100 transform cursor-pointer"
+              onHoverStart={() => setIsHoveredEdu(true)}
+              onHoverEnd={() => setIsHoveredEdu(false)}
+              animate={{
+                rotateZ: isHoveredEdu ? 0 : -8,
+                rotateY: isHoveredEdu ? 0 : 20,
+                rotateX: isHoveredEdu ? 0 : 15,
+                scale: isHoveredEdu ? 1 : 0.75, // Ajustar escala en función del hover
+                boxShadow: isHoveredEdu ? '20px 18px 110px rgba(255, 255, 255, 0.9)' : 'none', // Cambiar sombra
+              }}
+            >
+              <div className="bg-black rounded-xl z-10">
+                <Image
+                  className="dark:invert foto"
+                  src="/home/education.svg"
+                  alt="my photo"
+                  width={120}
+                  height={120}
+                  priority
+                />
+              </div>
+              <div className="flex flex-col gap-2 px-2">
+                <p className="text-md text-[#58e6d9]"><strong>Educación</strong></p>
+                <p>Mis estudios hasta hoy.</p>
+              </div>
+            </motion.article>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-1 mt-2" style={{ perspective: '1000px' }}>
+            <motion.article
+              className="flex border border-white border-solid rounded-xl w-full p-2 z-10 hover:shadow-[5px_3px_5px_rgba(255,255,255,0.9)] bg-black transition-all duration-100 transform cursor-pointer"
+              onHoverStart={() => setIsHoveredPro(true)}
+              onHoverEnd={() => setIsHoveredPro(false)}
+              animate={{
+                rotateZ: isHoveredPro ? 0 : 12,
+                rotateY: isHoveredPro ? 0 : 20,
+                rotateX: isHoveredPro ? 0 : 30,
+                scale: isHoveredPro ? 1 : 0.75, // Ajustar escala en función del hover
+                boxShadow: isHoveredPro ? '20px 18px 110px rgba(255, 255, 255, 0.9)' : 'none', // Cambiar sombra
+              }}
+            >
+              <div className="bg-black rounded-xl z-10">
+                <Image
+                  className="dark:invert foto"
+                  src="/home/proyect.svg"
+                  alt="my photo"
+                  width={120}
+                  height={120}
+                  priority
+                />
+              </div>
+              <div className="flex flex-col gap-2 px-2">
+                <p className="text-md text-[#58e6d9]"><strong>Proyectos</strong></p>
+                <p>Todos los proyectos involucrados</p>
+              </div>
+            </motion.article>
+
+
+            <motion.article
+              className="flex border border-white border-solid rounded-xl w-full p-2 z-10 hover:shadow-[5px_3px_5px_rgba(255,255,255,0.9)] bg-black transition-all duration-100 transform cursor-pointer"
+              onHoverStart={() => setIsHoveredAbo(true)}
+              onHoverEnd={() => setIsHoveredAbo(false)}
+              animate={{
+                rotateZ: isHoveredAbo ? 0 : 12,
+                rotateY: isHoveredAbo ? 0 : 20,
+                rotateX: isHoveredAbo ? 0 : -8,
+                scale: isHoveredAbo ? 1 : 0.75, // Ajustar escala en función del hover
+                boxShadow: isHoveredAbo ? '20px 18px 110px rgba(255, 255, 255, 0.9)' : 'none', // Cambiar sombra
+              }}
+            >
+              <div className="bg-black rounded-xl z-10">
+                <Image
+                  className="dark:invert foto"
+                  src="/home/about.svg"
+                  alt="my photo"
+                  width={120}
+                  height={120}
+                  priority
+                />
+              </div>
+              <div className="flex flex-col gap-2 px-2">
+                <p className="text-md text-[#58e6d9]"><strong>Sobre mí</strong></p>
+                <p>Para conocerme un poco más</p>
+              </div>
+            </motion.article>
+          </div>
+
+        </section>
+
+        {/* Footer  */}
+        <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
             target="_blank"
             rel="noopener noreferrer"
           >
             <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              aria-hidden
+              src="https://nextjs.org/icons/file.svg"
+              alt="File icon"
+              width={16}
+              height={16}
             />
-            Deploy now
+            Learn
           </a>
           <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Read our docs
+            <Image
+              aria-hidden
+              src="https://nextjs.org/icons/window.svg"
+              alt="Window icon"
+              width={16}
+              height={16}
+            />
+            Examples
           </a>
-        </div>
+          <a
+            className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+            href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              aria-hidden
+              src="https://nextjs.org/icons/globe.svg"
+              alt="Globe icon"
+              width={16}
+              height={16}
+            />
+            Go to nextjs.org →
+          </a>
+        </footer>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    </>
   );
 }
