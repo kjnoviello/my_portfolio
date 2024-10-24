@@ -84,7 +84,6 @@ export default function Home() {
               </div>
             </motion.article>
 
-
             <motion.article
               className="flex border border-white border-solid rounded-xl w-full p-2 z-10 hover:shadow-[5px_3px_5px_rgba(255,255,255,0.9)] bg-black transition-all duration-100 transform cursor-pointer"
               onHoverStart={() => setIsHoveredEdu(true)}
