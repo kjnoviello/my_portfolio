@@ -71,9 +71,9 @@ export default function Home() {
         {/* Section cards */}
         <section className="flex flex-wrap justify-center gap-5">
 
-          <div className="flex flex-col sm:flex-row gap-4" style={{ perspective: '1000px' }}>
+          <div className="flex flex-col sm:flex-row gap-6" style={{ perspective: '1000px' }}>
             <motion.article
-              className="flex border border-white border-solid rounded-xl w-full p-2 z-10 hover:shadow-[20px_18px_110px_rgba(255,255,255,0.9)] bg-black transition-all duration-100 transform cursor-pointer"
+              className="flex border border-white border-solid rounded-xl w-full p-2 z-10 bg-black transition-all duration-100 transform cursor-pointer"
               onHoverStart={() => setIsHoveredExp(true)}
               onHoverEnd={() => setIsHoveredExp(false)}
               animate={{
@@ -81,17 +81,17 @@ export default function Home() {
                 rotateY: isHoveredExp ? 0 : 20,
                 rotateX: isHoveredExp ? 0 : -30,
                 scale: isHoveredExp ? 1 : 0.8,
-                boxShadow: isHoveredExp && !isResponsive ? '20px 18px 110px rgba(255, 255, 255, 0.9)' : 'none'
+                boxShadow: isHoveredExp && !isResponsive ? '0px 0px 200px rgba(255, 255, 255, 0.9)' : '2px 8px 10px rgba(255, 255, 255, 0.9)'
               }}
             >
 
               <div className="bg-black rounded-xl z-10">
                 <Image
-                  className="dark:invert foto"
+                  className="dark:invert w-[120px] h-[90px]"
                   src="/home/experience.svg"
                   alt="my photo"
-                  width={120}
-                  height={120}
+                  width={100}
+                  height={100}
                   priority
                 />
               </div>
@@ -111,16 +111,16 @@ export default function Home() {
                 rotateY: isHoveredEdu ? 0 : 20,
                 rotateX: isHoveredEdu ? 0 : 15,
                 scale: isHoveredEdu ? 1 : 0.8, // Ajustar escala en función del hover
-                boxShadow: isHoveredEdu && !isResponsive? '20px 18px 110px rgba(255, 255, 255, 0.9' : 'none', // Cambiar sombra
+                boxShadow: isHoveredEdu && !isResponsive? '0px 0px 200px rgba(255, 255, 255, 0.9' : '2px 8px 10px rgba(255, 255, 255, 0.9)', // Cambiar sombra
               }}
             >
               <div className="bg-black rounded-xl z-10">
                 <Image
-                  className="dark:invert foto"
+                  className="dark:invert w-[120px] h-[90px]"
                   src="/home/education.svg"
                   alt="my photo"
                   width={120}
-                  height={120}
+                  height={100}
                   priority
                 />
               </div>
@@ -131,9 +131,9 @@ export default function Home() {
             </motion.article>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 mt-2" style={{ perspective: '1000px' }}>
+          <div className="flex flex-col sm:flex-row gap-6 sm:mt-2" style={{ perspective: '1000px' }}>
             <motion.article
-              className="flex border border-white border-solid rounded-xl w-full p-2 z-10 hover:shadow-[5px_3px_5px_rgba(255,255,255,0.9)] bg-black transition-all duration-100 transform cursor-pointer"
+              className="flex border border-white border-solid rounded-xl w-full p-2 z-10 bg-black transition-all duration-100 transform cursor-pointer"
               onHoverStart={() => setIsHoveredPro(true)}
               onHoverEnd={() => setIsHoveredPro(false)}
               animate={{
@@ -141,16 +141,16 @@ export default function Home() {
                 rotateY: isHoveredPro ? 0 : -20,
                 rotateX: isHoveredPro ? 0 : 30,
                 scale: isHoveredPro ? 1 : 0.8, // Ajustar escala en función del hover
-                boxShadow: isHoveredPro && !isResponsive ? '20px 18px 110px rgba(255, 255, 255, 0.9)' : 'none', // Cambiar sombra
+                boxShadow: isHoveredPro && !isResponsive ? '0px 0px 200px rgba(255, 255, 255, 0.9)' : '2px 8px 10px rgba(255, 255, 255, 0.9)', // Cambiar sombra
               }}
             >
               <div className="bg-black rounded-xl z-10">
                 <Image
-                  className="dark:invert foto"
+                  className="dark:invert w-[120px] h-[90px]"
                   src="/home/proyect.svg"
                   alt="my photo"
                   width={120}
-                  height={120}
+                  height={100}
                   priority
                 />
               </div>
@@ -162,7 +162,7 @@ export default function Home() {
 
 
             <motion.article
-              className="flex border border-white border-solid rounded-xl w-full p-2 z-10 hover:shadow-[5px_3px_5px_rgba(255,255,255,0.9)] bg-black transition-all duration-100 transform cursor-pointer"
+              className="flex border border-white border-solid rounded-xl w-full p-2 z-10 bg-black transition-all duration-100 transform cursor-pointer"
               onHoverStart={() => setIsHoveredAbo(true)}
               onHoverEnd={() => setIsHoveredAbo(false)}
               animate={{
@@ -170,16 +170,16 @@ export default function Home() {
                 rotateY: isHoveredAbo ? 0 : 20,
                 rotateX: isHoveredAbo ? 0 : -8,
                 scale: isHoveredAbo ? 1 : 0.8, // Ajustar escala en función del hover
-                boxShadow: isHoveredAbo && !isResponsive? '20px 18px 110px rgba(255, 255, 255, 0.9)' : 'none', // Cambiar sombra
+                boxShadow: isHoveredAbo && !isResponsive? '0px 0px 200px rgba(255, 255, 255, 0.9)' : '2px 8px 10px rgba(255, 255, 255, 0.9)', // Cambiar sombra
               }}
             >
               <div className="bg-black rounded-xl z-10">
                 <Image
-                  className="dark:invert foto"
+                  className="dark:invert w-[120px] h-[90px]"
                   src="/home/about.svg"
                   alt="my photo"
                   width={120}
-                  height={120}
+                  height={100}
                   priority
                 />
               </div>
