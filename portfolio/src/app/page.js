@@ -1,11 +1,9 @@
 "use client"
 import Image from "next/image";
-import { RainbowButton } from "@/components/ui/rainbow-button";
 import WordFadeIn from "@/components/ui/word-fade-in";
 import { GridPattern } from "@/components/ui/animated-grid-pattern";
 import { motion } from "framer-motion"
-import { useState } from "react";
-// import { motion } from "framer-motion-3d"
+import { useEffect, useState } from "react";
 
 
 export default function Home() {
@@ -14,16 +12,35 @@ export default function Home() {
   const [isHoveredEdu, setIsHoveredEdu] = useState(false);
   const [isHoveredPro, setIsHoveredPro] = useState(false);
   const [isHoveredAbo, setIsHoveredAbo] = useState(false);
+  const [isResponsive, setIsResponsive] = useState(true)
+
+  useEffect(() => {
+    // Detectar tamaño de pantalla y ajustar `isResponsive`
+    const handleResize = () => {
+      const isMobile = window.innerWidth <= 639;
+      setIsResponsive(isMobile);
+      setIsHoveredExp(isMobile);
+      setIsHoveredEdu(isMobile);
+      setIsHoveredPro(isMobile);
+      setIsHoveredAbo(isMobile);
+    };
+
+    handleResize(); // Detecta el tamaño inicial
+    window.addEventListener('resize', handleResize);
+
+    // Limpiar el event listener al desmontar
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
 
 
   return (
-    <>
+    <main className="responsive">
       {/* Animated background */}
-      <GridPattern duration="1" />
+      <GridPattern />
 
       {/* Main body */}
-      <main className="flex flex-col mx-auto items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+      <div className="flex flex-col mx-auto items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
 
         <section className="flex flex-col sm:flex-row gap-8 row-start-2 items-center z-10 ">
 
@@ -41,9 +58,9 @@ export default function Home() {
 
           <div className="flex flex-col gap-8 row-start-2 items-center sm:items-start z-10">
             <div className="md:w-[500px] w-full list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-              <WordFadeIn 
+              <WordFadeIn
                 className="mb-2 text-sm text-white"
-                words="Hola, mi nombre es Kevin Joel Noviello y soy DESARROLLADOR FRONTEND"                
+                words="Hola, mi nombre es Kevin Joel Noviello y soy DESARROLLADOR FRONTEND"
               />
             </div>
             {/* <RainbowButton>Más sobre mí</RainbowButton> */}
@@ -54,7 +71,7 @@ export default function Home() {
         {/* Section cards */}
         <section className="flex flex-wrap justify-center gap-5">
 
-          <div className="flex flex-col sm:flex-row gap-1" style={{ perspective: '1000px' }}>
+          <div className="flex flex-col sm:flex-row gap-4" style={{ perspective: '1000px' }}>
             <motion.article
               className="flex border border-white border-solid rounded-xl w-full p-2 z-10 hover:shadow-[20px_18px_110px_rgba(255,255,255,0.9)] bg-black transition-all duration-100 transform cursor-pointer"
               onHoverStart={() => setIsHoveredExp(true)}
@@ -63,11 +80,11 @@ export default function Home() {
                 rotateZ: isHoveredExp ? 0 : 12,
                 rotateY: isHoveredExp ? 0 : 20,
                 rotateX: isHoveredExp ? 0 : -30,
-                scale: isHoveredExp ? 1 : 0.75, // Ajustar escala en función del hover
-                boxShadow: isHoveredExp ? '20px 18px 110px rgba(255, 255, 255, 0.9)' : 'none', // Cambiar sombra
+                scale: isHoveredExp ? 1 : 0.8,
+                boxShadow: isHoveredExp && !isResponsive ? '20px 18px 110px rgba(255, 255, 255, 0.9)' : 'none'
               }}
-
             >
+
               <div className="bg-black rounded-xl z-10">
                 <Image
                   className="dark:invert foto"
@@ -86,15 +103,15 @@ export default function Home() {
 
 
             <motion.article
-              className="flex border border-white border-solid rounded-xl w-full p-2 z-10 hover:shadow-[5px_3px_5px_rgba(255,255,255,0.9)] bg-black transition-all duration-100 transform cursor-pointer"
+              className="flex border border-white border-solid rounded-xl w-full p-2 z-10 bg-black transition-all duration-100 transform cursor-pointer"
               onHoverStart={() => setIsHoveredEdu(true)}
               onHoverEnd={() => setIsHoveredEdu(false)}
               animate={{
                 rotateZ: isHoveredEdu ? 0 : -8,
                 rotateY: isHoveredEdu ? 0 : 20,
                 rotateX: isHoveredEdu ? 0 : 15,
-                scale: isHoveredEdu ? 1 : 0.75, // Ajustar escala en función del hover
-                boxShadow: isHoveredEdu ? '20px 18px 110px rgba(255, 255, 255, 0.9)' : 'none', // Cambiar sombra
+                scale: isHoveredEdu ? 1 : 0.8, // Ajustar escala en función del hover
+                boxShadow: isHoveredEdu && !isResponsive? '20px 18px 110px rgba(255, 255, 255, 0.9' : 'none', // Cambiar sombra
               }}
             >
               <div className="bg-black rounded-xl z-10">
@@ -114,17 +131,17 @@ export default function Home() {
             </motion.article>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-1 mt-2" style={{ perspective: '1000px' }}>
+          <div className="flex flex-col sm:flex-row gap-4 mt-2" style={{ perspective: '1000px' }}>
             <motion.article
               className="flex border border-white border-solid rounded-xl w-full p-2 z-10 hover:shadow-[5px_3px_5px_rgba(255,255,255,0.9)] bg-black transition-all duration-100 transform cursor-pointer"
               onHoverStart={() => setIsHoveredPro(true)}
               onHoverEnd={() => setIsHoveredPro(false)}
               animate={{
                 rotateZ: isHoveredPro ? 0 : 12,
-                rotateY: isHoveredPro ? 0 : 20,
+                rotateY: isHoveredPro ? 0 : -20,
                 rotateX: isHoveredPro ? 0 : 30,
-                scale: isHoveredPro ? 1 : 0.75, // Ajustar escala en función del hover
-                boxShadow: isHoveredPro ? '20px 18px 110px rgba(255, 255, 255, 0.9)' : 'none', // Cambiar sombra
+                scale: isHoveredPro ? 1 : 0.8, // Ajustar escala en función del hover
+                boxShadow: isHoveredPro && !isResponsive ? '20px 18px 110px rgba(255, 255, 255, 0.9)' : 'none', // Cambiar sombra
               }}
             >
               <div className="bg-black rounded-xl z-10">
@@ -152,8 +169,8 @@ export default function Home() {
                 rotateZ: isHoveredAbo ? 0 : 12,
                 rotateY: isHoveredAbo ? 0 : 20,
                 rotateX: isHoveredAbo ? 0 : -8,
-                scale: isHoveredAbo ? 1 : 0.75, // Ajustar escala en función del hover
-                boxShadow: isHoveredAbo ? '20px 18px 110px rgba(255, 255, 255, 0.9)' : 'none', // Cambiar sombra
+                scale: isHoveredAbo ? 1 : 0.8, // Ajustar escala en función del hover
+                boxShadow: isHoveredAbo && !isResponsive? '20px 18px 110px rgba(255, 255, 255, 0.9)' : 'none', // Cambiar sombra
               }}
             >
               <div className="bg-black rounded-xl z-10">
@@ -223,7 +240,7 @@ export default function Home() {
             Go to nextjs.org →
           </a>
         </footer>
-      </main>
-    </>
+      </div>
+    </main>
   );
 }

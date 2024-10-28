@@ -13,7 +13,7 @@ export function GridPattern({
   numSquares = 50,
   className,
   maxOpacity = 0.5,
-  duration = 4,
+  duration = 2,
   repeatDelay = 0.5,
   ...props
 }) {
@@ -83,7 +83,7 @@ export function GridPattern({
       ref={containerRef}
       aria-hidden="true"
       className={cn(
-        "pointer-events-none absolute inset-0 h-full w-full fill-gray-400/30 skew-y-12 overflow-hidden ",
+        "pointer-events-none absolute inset-0 h-full w-full fill-gray-400/30",
         className
       )}
       {...props}>
