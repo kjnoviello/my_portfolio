@@ -1,0 +1,24 @@
+[
+    {
+        "href": "/pages/experience",
+        "rotateZ": "-12",
+        "rotateY": "-10",
+        "rotateX": "-20",
+        "variable": "isHoveredExp",
+        "function": "setIsHoveredExp",
+        "imageSrc": "/home/experience.svg",
+        "title": "Experiencia",
+        "description": "Conoce más sobre mi carrera."
+    },
+    {
+        "href": "/pages/education",
+        "rotateZ": "-8",
+        "rotateY": "20",
+        "rotateX": "15",
+        "variable": "isHoveredEdu",
+        "function": "setIsHoveredEdu",
+        "imageSrc": "/home/education.svg",
+        "title": "Educación",
+        "description": "Conoce más sobre mi carrera."
+    }
+]

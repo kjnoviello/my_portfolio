@@ -15,15 +15,7 @@ p{
   color: white
 }
 
-.foto{
-  box-shadow: 1px 0px 200px 20px rgba(109, 109, 109, 0.8);
-  border-radius: 18px;
-  justify-self: center;
-}
-.foto:hover{
-  /* transform: translateZ(45px); */
-  perspective: 20px ;
-}
+
 
 
 @layer utilities {

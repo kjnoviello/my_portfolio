@@ -1,3 +1,9 @@
-.intro-body{
-    overflow-y: hidden;
+.foto {
+    box-shadow: 0px 0px 100px 20px rgba(109, 109, 109, 0.8);
+    border-radius: 18px;
+    justify-self: center;
+}
+.foto:hover {
+    /* transform: translateZ(45px); */
+    perspective: 20px;
 }
